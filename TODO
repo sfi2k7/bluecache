@@ -1,0 +1,20 @@
+Features:
+    Simple Key Value
+    Expireable Keys
+    Pluggable Backend (in-memory, redis, mongo)
+    Stats:
+        Hit, Miss
+
+API:
+    c := BlueCache{engine:BlueCache.Memory}
+    c.SetEngine(&NewEngine{})
+    c.Set(k,v)
+    c.SetEx(k,v,exp)
+
+    c.Get(k)
+    
+    c.Delete(k)
+
+    go tool cover -html=cover.out -o cover.html
+    go test -v -cover -coverprofile cover.out
+    go test -v -cover --bench=. --benchmem
