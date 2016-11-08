@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
+	"github.com/sfi2k7/bluecache"
+
 	"time"
 
 	"strconv"
-
-	"github.com/faisal/bluecache"
 )
 
 func main() {
