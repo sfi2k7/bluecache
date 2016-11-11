@@ -41,3 +41,11 @@ func New() *BlueCache {
 	c.backend.Init()
 	return c
 }
+
+func NewRedis() *BlueCache {
+	c := &BlueCache{
+		backend: &redisBackend{},
+	}
+	c.backend.Init()
+	return c
+}

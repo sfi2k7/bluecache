@@ -7,10 +7,10 @@ import (
 //Backend provides backend interface for BlueCache
 //It has a pluggable interface
 type Backend interface {
+	Clear() error
+	Del(k []byte) error
+	Get(k []byte) ([]byte, error)
+	Init()
 	Set(k, v []byte) error
 	SetEx(k, v []byte, ex time.Duration) error
-	Get(k []byte) ([]byte, error)
-	Del(k []byte) error
-	Init()
-	Clear() error
 }
