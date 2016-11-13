@@ -98,3 +98,8 @@ func (m *memory) expire() {
 		}
 	}
 }
+
+func (m *memory) Close() error {
+	m.c = nil
+	return nil
+}

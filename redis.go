@@ -60,3 +60,7 @@ func (m *redisBackend) Del(k []byte) error {
 func (m *redisBackend) Clear() error {
 	return nil
 }
+
+func (m *redisBackend) Close() error {
+	return nil
+}

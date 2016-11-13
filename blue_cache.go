@@ -5,6 +5,12 @@ import (
 	"time"
 )
 
+const (
+	BackendMemory = iota
+	BackendRedis
+	BackendBolt
+)
+
 type BlueCache struct {
 	backend Backend
 }
@@ -29,6 +35,19 @@ func (bc *BlueCache) Clear() error {
 	return bc.backend.Clear()
 }
 
+func NewWithBackend(backendType int) *BlueCache {
+	switch backendType {
+	case BackendMemory:
+		return New()
+	case BackendRedis:
+		return NewRedis()
+	case BackendBolt:
+		return NewBolt()
+	default:
+		return nil
+	}
+}
+
 //New returns new instance of BlueCache
 //by default it uses Memory as store
 func New() *BlueCache {
@@ -45,6 +64,14 @@ func New() *BlueCache {
 func NewRedis() *BlueCache {
 	c := &BlueCache{
 		backend: &redisBackend{},
+	}
+	c.backend.Init()
+	return c
+}
+
+func NewBolt() *BlueCache {
+	c := &BlueCache{
+		backend: &boltBackend{},
 	}
 	c.backend.Init()
 	return c
